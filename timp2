@@ -1,0 +1,35 @@
+#include "stdafx.h"
+#include <stdlib.h>
+#include <iostream>
+#include <string.h>
+
+using namespace std;
+#define MAXBUF 1024
+int main()
+{
+	char ch[MAXBUF];
+	char *r, *r1;
+	FILE *f1;
+	f1 = fopen("1.txt", "r");
+	int i = 0;
+	fread(ch, sizeof(char), MAXBUF, f1);
+	r = ch;
+	do
+	{
+		if (strstr(r, "/**") != nullptr)
+		{
+			r = strstr(r, "func");
+			r += 4;
+			i = 0;
+			r1 = strstr(r, "*/");
+			do {
+				cout << r[i];
+				r++;
+			} while (r != r1);
+			cout << "\n";
+		}
+		else break;
+	} while (r != nullptr);
+	system("pause");
+	return 0;
+}
